@@ -29,16 +29,13 @@ class Solution {
         boolean flag=false;
         long val=-1;
         for(String e:arr){
-            flag=false;
-            for(char c:e.toCharArray()){
-                if(c>=97 && c<=122) {
-                    flag=true; break;
-                }
-            }
-            if(!flag && !e.contains("9")){
-                val=Math.max(val,Long.valueOf(e));
+            flag=Pattern.matches("[a-z]+",e);
+            if(!flag){
+                flag=e.contains("9");
+                if(!flag)val=Math.max(val,Long.valueOf(e));
             }
         }
+        
         return  val;
     }
 }
